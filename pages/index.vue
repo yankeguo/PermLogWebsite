@@ -1,3 +1,0 @@
-<template>
-  <UContainer></UContainer>
-</template>
