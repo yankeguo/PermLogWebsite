@@ -1,6 +1,12 @@
 <template>
   <div>
+    <Html>
+      <Head>
+        <Title>Permlog</Title>
+      </Head>
+    </Html>
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <NuxtPage />
+    <UNotifications />
   </div>
 </template>
