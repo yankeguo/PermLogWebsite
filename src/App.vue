@@ -25,7 +25,7 @@ const valContent = ref("");
 const errContent = ref("");
 const valSubmitHash = ref("");
 
-const regexpForBytes32 = /^[ -~]{1,16}$/;
+const regexpPrintable32 = /^[ -~]{1,32}$/;
 
 onMounted(async () => {
   const address = localStorage.getItem("contract-address");
@@ -84,14 +84,14 @@ async function submit() {
     errAddress.value = "Invalid address";
     bad = true;
   }
-  if (!regexpForBytes32.test(valKind.value)) {
-    errKind.value = "Invalid kind, should be 1-16 ASCII characters";
+  if (!regexpPrintable32.test(valKind.value)) {
+    errKind.value = "Invalid kind, should be 1-32 ASCII characters";
     bad = true;
   } else {
     errKind.value = "";
   }
-  if (!regexpForBytes32.test(valName.value)) {
-    errName.value = "Invalid name, should be 1-16 ASCII characters";
+  if (!regexpPrintable32.test(valName.value)) {
+    errName.value = "Invalid name, should be 1-32 ASCII characters";
     bad = true;
   } else {
     errName.value = "";
@@ -147,7 +147,7 @@ async function submit() {
       />
       <span v-if="errAddress" class="text-red-400">{{ errAddress }}</span>
       <label class="text-primary font-semibold"
-        >Log Kind (1-16 ASCII Characters)</label
+        >Log Kind (1-32 ASCII Characters)</label
       >
       <InputText
         class="ring ring-1 rounded ring-slate-400"
@@ -157,7 +157,7 @@ async function submit() {
       />
       <span v-if="errKind" class="text-red-400">{{ errKind }}</span>
       <label class="text-primary font-semibold"
-        >Log Name (1-16 ASCII Characters)</label
+        >Log Name (1-32 ASCII Characters)</label
       >
       <InputText
         class="ring ring-1 rounded ring-slate-400"
