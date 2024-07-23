@@ -23,6 +23,7 @@ const valName = ref("");
 const errName = ref("");
 const valContent = ref("");
 const errContent = ref("");
+const valSubmitHash = ref("");
 
 const regexpForBytes32 = /^[ -~]{1,16}$/;
 
@@ -69,6 +70,10 @@ function stringToBytes32(s: string): `0x${string}` {
   return toHex(buf);
 }
 
+function urlForGnosisTx(txHash: string): string {
+  return `https://gnosis.blockscout.com/tx/${txHash}?tab=logs`;
+}
+
 async function submit() {
   let bad = false;
 
@@ -111,12 +116,16 @@ async function submit() {
   const name = stringToBytes32(valName.value);
   const content = toHex(rawContent);
 
-  await writeContract(wagmiConfig, {
+  const txHash = await writeContract(wagmiConfig, {
     abi,
     address,
     functionName: "log",
     args: [kind, name, content],
   });
+
+  valSubmitHash.value = txHash;
+
+  valContent.value = "";
 }
 </script>
 
@@ -157,6 +166,12 @@ async function submit() {
       <Textarea v-model="valContent" rows="12"></Textarea>
       <span v-if="errContent" class="text-red-400">{{ errContent }}</span>
       <Button @click="submit" label="Submit Log"></Button>
+      <div v-if="valSubmitHash" class="text-green-600">
+        <span> Transaction Submitted, </span>
+        <a class="underline font-semibold" :href="urlForGnosisTx(valSubmitHash)"
+          >Click to View</a
+        >
+      </div>
     </div>
   </div>
 </template>
