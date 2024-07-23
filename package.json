@@ -12,6 +12,10 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@wagmi/connectors": "^5.0.26",
+    "@wagmi/core": "^2.12.2",
+    "@web3modal/wagmi": "^5.0.7",
+    "viem": "^2.17.10",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
