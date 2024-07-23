@@ -132,11 +132,13 @@ async function submit() {
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col pt-8 gap-8">
     <div class="flex flex-row justify-between">
-      <div class="font-semibold text-3xl">Permlog</div>
+      <div class="text-primary font-semibold text-3xl">Permlog</div>
       <w3m-button />
     </div>
     <div class="flex flex-col gap-4">
-      <label class="font-semibold">Gnosis PermLog Contract Address</label>
+      <label class="text-primary font-semibold"
+        >Contract Address (Gnosis Chain)</label
+      >
       <InputText
         class="ring ring-1 rounded ring-slate-400"
         size="small"
@@ -144,7 +146,9 @@ async function submit() {
         placeholder="0xaAbBcCdD..."
       />
       <span v-if="errAddress" class="text-red-400">{{ errAddress }}</span>
-      <label class="font-semibold">Log Kind (1-16 ASCII Characters)</label>
+      <label class="text-primary font-semibold"
+        >Log Kind (1-16 ASCII Characters)</label
+      >
       <InputText
         class="ring ring-1 rounded ring-slate-400"
         size="small"
@@ -152,7 +156,9 @@ async function submit() {
         placeholder="recovery-code"
       />
       <span v-if="errKind" class="text-red-400">{{ errKind }}</span>
-      <label class="font-semibold">Log Name (1-16 ASCII Characters)</label>
+      <label class="text-primary font-semibold"
+        >Log Name (1-16 ASCII Characters)</label
+      >
       <InputText
         class="ring ring-1 rounded ring-slate-400"
         size="small"
@@ -160,13 +166,13 @@ async function submit() {
         placeholder="github"
       />
       <span v-if="errName" class="text-red-400">{{ errName }}</span>
-      <label class="font-semibold"
-        >Log Content (Base64 Encoded Arbitrary Data)</label
+      <label class="text-primary font-semibold"
+        >Log Content (Base64 Encoded Binary)</label
       >
       <Textarea v-model="valContent" rows="12"></Textarea>
       <span v-if="errContent" class="text-red-400">{{ errContent }}</span>
       <Button @click="submit" label="Submit Log"></Button>
-      <div v-if="valSubmitHash" class="text-green-600">
+      <div v-if="valSubmitHash" class="text-green-400">
         <span> Transaction Submitted, </span>
         <a class="underline font-semibold" :href="urlForGnosisTx(valSubmitHash)"
           >Click to View</a
