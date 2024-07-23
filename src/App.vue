@@ -30,5 +30,11 @@ createWeb3Modal({
 </script>
 
 <template>
-  <w3m-button />
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col pt-8">
+    <div class="flex flex-row justify-between">
+      <div class="font-semibold text-3xl">Permlog</div>
+
+      <w3m-button />
+    </div>
+  </div>
 </template>
